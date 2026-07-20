@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% if page.seo_title %}{{ page.seo_title }}{% elsif page.title %}{{ page.title }} | Bombay Earthing House{% else %}{{ site.title }}{% endif %}</title>
+<meta name="description" content="{% if page.seo_description %}{{ page.seo_description }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<meta property="og:title" content="{% if page.seo_title %}{{ page.seo_title }}{% elsif page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+<meta property="og:description" content="{% if page.seo_description %}{{ page.seo_description }}{% else %}{{ site.description }}{% endif %}">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Bombay Earthing House",
+  "url": "{{ site.url }}",
+  "description": "Manufacturer of Copper Bonded Earth Rods, Pipe Electrodes, Lightning Arresters, Earth Plates, Cable Trays and earthing accessories. ISO 9001 certified.",
+  "address": [
+    {"@type":"PostalAddress","streetAddress":"{{ site.data.settings.address_mumbai }}","addressLocality":"Mumbai","postalCode":"400002","addressCountry":"IN"},
+    {"@type":"PostalAddress","streetAddress":"{{ site.data.settings.address_navi }}","addressLocality":"Navi Mumbai","postalCode":"400705","addressCountry":"IN"}
+  ],
+  "telephone": "{{ site.data.settings.phone_mumbai }}",
+  "email": "{{ site.data.settings.email_sales }}"
+}
+</script>
+
+</head>
+<body>

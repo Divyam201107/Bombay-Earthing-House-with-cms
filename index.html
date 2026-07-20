@@ -1,0 +1,124 @@
+---
+title: Home
+nav: home
+seo_title: "Copper Bonded Earth Rod Manufacturer & Supplier India | Bombay Earthing House"
+seo_description: "Bombay Earthing House - ISO 9001 certified manufacturer of Copper Bonded Earth Rods, Pipe Electrodes, Lightning Arresters, Earth Plates, Cable Trays and earthing accessories. Mumbai."
+permalink: /
+---
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">India's Earthing &amp; Lightning Protection Manufacturer</div>
+        <h1>Engineering a <em>safer ground</em><br>for India's infrastructure</h1>
+        <p class="lead">Bombay Earthing House manufactures Copper Bonded Earth Rods, Pipe Electrodes, Lightning Arresters, Earth Plates, Cable Trays and a full range of earthing accessories — built to IS, IEC &amp; BS standards, trusted by 550+ clients worldwide.</p>
+        <div class="actions">
+          <a href="{{ '/products.html' | relative_url }}" class="btn btn-primary">Explore Products <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="{{ '/contact.html' | relative_url }}" class="btn btn-outline">Request a Quote</a>
+        </div>
+        <div class="hero-stats">
+          <div><b>550+</b><span>Clients Served</span></div>
+          <div><b>ISO 9001</b><span>Certified</span></div>
+          <div><b>600+</b><span>Projects Done</span></div>
+          <div><b>Mumbai</b><span>Based Factory</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <circle class="pulse-ring" cx="200" cy="320" r="40" fill="none" stroke="#4a7fb5" stroke-width="1.5"/>
+          <circle class="pulse-ring d2" cx="200" cy="320" r="40" fill="none" stroke="#4a7fb5" stroke-width="1.5"/>
+          <circle class="pulse-ring d3" cx="200" cy="320" r="40" fill="none" stroke="#4a7fb5" stroke-width="1.5"/>
+          <path class="bolt-path" d="M210 60 L168 155 L200 155 L178 240 L242 130 L206 130 Z" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+          <line x1="200" y1="240" x2="200" y2="320" stroke="#4a7fb5" stroke-width="2" stroke-dasharray="4 6"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <svg class="wave-sep" viewBox="0 0 1440 48" preserveAspectRatio="none"><path d="M0 24 Q360 0 720 24 T1440 24 V48 H0Z" fill="#fff"/></svg>
+</section>
+
+<section class="section bg-pale">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow">Products We Manufacture</div>
+      <h2>A complete earthing &amp; lightning protection portfolio</h2>
+      <p>Every product manufactured in-house in Mumbai, tested to IS, IEC and BS standards.</p>
+    </div>
+    <div class="grid cols-4">
+      {% assign products = site.products | sort: 'weight' %}
+      {% for product in site.products limit:8 %}
+      <div class="product-card">
+        <div>
+          {% assign thumb = product.photos[0].image | default: product.items[0].image %}
+          <img src="{{ thumb | relative_url }}" alt="{{ product.title }}" style="width:100%;height:150px;object-fit:contain;background:#f0f5fb;padding:8px;">
+        </div>
+        <div class="body">
+          <h3 style="font-size:14px;">{{ product.eyebrow }}</h3>
+          <p style="font-size:12.5px;">{{ product.intro | truncatewords: 14 }}</p>
+          <a href="{{ product.url | relative_url }}" class="btn btn-ghost" style="margin-top:auto;font-size:12px;padding:8px 12px;">View Details</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div style="text-align:center;margin-top:28px;"><a href="{{ '/products.html' | relative_url }}" class="btn btn-primary">View All Products <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid cols-2" style="align-items:center;gap:50px;">
+      <div>
+        <div class="eyebrow">About Us</div>
+        <h2>ISO 9001 certified manufacturer — built on consistent quality</h2>
+        <p>Bombay Earthing House has earned a reputation as one of India's most reliable manufacturers of earthing electrodes and lightning protection products. Every product is backed by technical documentation, rigorous in-house testing and a commitment to on-time delivery from our Mumbai facility.</p>
+        <a href="{{ '/about.html' | relative_url }}" class="btn btn-ghost" style="margin-top:8px;">More About Us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="grid cols-2" style="gap:16px;">
+        <div class="card"><span class="num">Quality</span><h3 style="font-size:14px;margin-top:8px;">ISO 9001:2008 Certified</h3><p style="font-size:12.5px;">Every product tested before despatch. Test certificates with every order.</p></div>
+        <div class="card"><span class="num">550+</span><h3 style="font-size:14px;margin-top:8px;">Satisfied Clients</h3><p style="font-size:12.5px;">Long-term relationships built on consistent quality and honest service.</p></div>
+        <div class="card"><span class="num">600+</span><h3 style="font-size:14px;margin-top:8px;">Projects Completed</h3><p style="font-size:12.5px;">From single electrode supplies to complete earthing system packages.</p></div>
+        <div class="card"><span class="num">40+</span><h3 style="font-size:14px;margin-top:8px;">Expert Professionals</h3><p style="font-size:12.5px;">Manufacturing, quality control, sales and logistics specialists.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-pale">
+  <div class="container">
+    <div class="section-head center"><div class="eyebrow">Industries We Serve</div><h2>Trusted across India's industries</h2></div>
+    <div class="grid cols-4">
+      {% for ind in site.data.industries.items %}
+      <div class="ind-card">
+        <img src="{{ ind.image | relative_url }}" alt="{{ ind.name }}" style="width:100%;height:200px;object-fit:cover;">
+        <div class="overlay"><h4>{{ ind.name }}</h4></div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section bg-ink">
+  <div class="container">
+    <div class="grid cols-2" style="align-items:center;gap:50px;">
+      <div>
+        <div class="eyebrow" style="color:#bcd0e8;">Quick Enquiry</div>
+        <h2>Send us your requirement</h2>
+        <p>Our team responds with a quotation within 24 hours.</p>
+        <div style="margin-top:20px;">
+          <div class="contact-box" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg><div><b style="color:#fff;">Mumbai Office</b><span style="color:#aab6c4;">{{ site.data.settings.address_mumbai }}</span></div></div>
+          <div class="contact-box" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg><div><b style="color:#fff;">Navi Mumbai Office</b><span style="color:#aab6c4;">{{ site.data.settings.address_navi }}</span></div></div>
+          <div class="contact-box" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5c0-1 1-1.5 2-1.5h2.5c.7 0 1.3.5 1.5 1.2l1 3c.2.6 0 1.3-.5 1.7L8.8 10.8c1.1 2.3 3 4.2 5.3 5.3l1.4-1.7c.4-.5 1.1-.7 1.7-.5l3 1c.7.2 1.2.8 1.2 1.5V19c0 1-1 2-2 2h-1C10.7 21 3 13.3 3 4V5Z"/></svg><div><b style="color:#fff;">Mumbai</b><span style="color:#aab6c4;"><a href="tel:{{ site.data.settings.phone_mumbai_tel }}" style="color:#aab6c4;">{{ site.data.settings.phone_mumbai }}</a></span></div></div>
+          <div class="contact-box" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5c0-1 1-1.5 2-1.5h2.5c.7 0 1.3.5 1.5 1.2l1 3c.2.6 0 1.3-.5 1.7L8.8 10.8c1.1 2.3 3 4.2 5.3 5.3l1.4-1.7c.4-.5 1.1-.7 1.7-.5l3 1c.7.2 1.2.8 1.2 1.5V19c0 1-1 2-2 2h-1C10.7 21 3 13.3 3 4V5Z"/></svg><div><b style="color:#fff;">Navi Mumbai</b><span style="color:#aab6c4;"><a href="tel:{{ site.data.settings.phone_navi_tel }}" style="color:#aab6c4;">{{ site.data.settings.phone_navi }}</a></span></div></div>
+        </div>
+      </div>
+      <form action="https://formsubmit.co/{{ site.data.settings.email_sales }}" method="POST" style="background:#fff;padding:28px;border-radius:6px;">
+        <div class="form-field"><label>Name</label><input type="text" name="name" required placeholder="Your name"></div>
+        <div class="form-field"><label>Email</label><input type="email" name="email" required placeholder="your@email.com"></div>
+        <div class="form-field"><label>Phone</label><input type="tel" name="phone" placeholder="+91 XXXXX XXXXX"></div>
+        <div class="form-field"><label>Product Required</label><select name="product">{% for item in site.data.nav_products.items %}<option>{{ item.name }}</option>{% endfor %}<option>Other / Custom</option></select></div>
+        <div class="form-field"><label>Message</label><textarea name="message" rows="3" placeholder="Quantity, specifications, site conditions…"></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Submit Enquiry</button>
+      </form>
+    </div>
+  </div>
+</section>

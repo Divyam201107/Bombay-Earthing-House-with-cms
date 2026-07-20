@@ -1,0 +1,166 @@
+# Bombay Earthing House — Website with CMS
+
+This is your website rebuilt so you can edit it from a proper admin panel —
+change any photo, edit product details, write blog posts — all through a
+visual interface that saves directly to your GitHub repo. No downloading
+files, no zipping, no manual uploads.
+
+**The website looks and behaves exactly the same as before.** Nothing
+changed visually. What changed is how you edit it.
+
+---
+
+## Part 1 — Replace your GitHub repo contents
+
+1. Delete everything currently in your GitHub repo (or create a fresh repo).
+2. Upload every file and folder from this zip, **keeping the folder
+   structure intact** (this matters now — folders like `_products`,
+   `_posts`, `_data`, `_layouts` must stay exactly as they are).
+   The easiest way: use GitHub Desktop (free, desktop.github.com) — clone
+   your empty repo, copy all these files into the cloned folder, commit,
+   push. Dragging folders through the github.com web uploader is
+   unreliable for this many nested folders.
+3. Go to **Settings → Pages** in your repo. Under "Build and deployment",
+   Source should be **"Deploy from a branch"**, Branch **main**, folder
+   **/ (root)**. Save.
+4. Wait 2-3 minutes — GitHub Pages runs a Jekyll build automatically
+   (this is free and built into GitHub Pages, nothing to configure).
+   Visit your site to confirm it looks the same as before.
+
+---
+
+## Part 2 — Set up the admin panel (one-time setup, ~15 minutes)
+
+The admin panel needs a small free "login helper" so it can securely
+connect to your GitHub account. This only needs to be set up once.
+
+### Step 1 — Deploy the login helper to Cloudflare (free)
+
+1. Go to: **https://github.com/sveltia/sveltia-cms-auth**
+2. Click the **"Deploy to Cloudflare Workers"** button on that page.
+3. Sign in with your Cloudflare account (the same one you used to connect
+   your domain).
+4. Follow the prompts to deploy. When it's done, you'll get a URL that
+   looks like:
+   `https://sveltia-cms-auth.YOUR-SUBDOMAIN.workers.dev`
+   **Copy this URL** — you'll need it in Step 3.
+
+### Step 2 — Create a GitHub "login app" for your site
+
+1. Go to **https://github.com/settings/developers**
+2. Click **OAuth Apps → New OAuth App**
+3. Fill in:
+   - **Application name:** Bombay Earthing CMS (or anything)
+   - **Homepage URL:** your website's URL (e.g. `https://bombayearthing.com`)
+   - **Authorization callback URL:** the Worker URL from Step 1, with
+     `/callback` added at the end, e.g.
+     `https://sveltia-cms-auth.YOUR-SUBDOMAIN.workers.dev/callback`
+4. Click **Register application**.
+5. Click **Generate a new client secret** — copy both the **Client ID**
+   and the **Client Secret** somewhere safe (you'll need them in the next
+   step, and the secret is only shown once).
+
+### Step 3 — Connect the login app to the login helper
+
+1. Go back to your Cloudflare dashboard → **Workers & Pages** → click on
+   the `sveltia-cms-auth` worker you deployed.
+2. Go to **Settings → Variables and Secrets**.
+3. Add two secrets:
+   - `GITHUB_CLIENT_ID` = the Client ID from Step 2
+   - `GITHUB_CLIENT_SECRET` = the Client Secret from Step 2
+4. Save and redeploy if prompted.
+
+### Step 4 — Point your site's admin panel at the login helper
+
+1. Open `admin/config.yml` in this project (find it via GitHub's web
+   editor, or in your local copy).
+2. Find these two lines near the top:
+   ```yaml
+   repo: YOUR-GITHUB-USERNAME/YOUR-REPO-NAME
+   base_url: https://YOUR-OAUTH-WORKER-URL.workers.dev
+   ```
+3. Replace `YOUR-GITHUB-USERNAME/YOUR-REPO-NAME` with your actual GitHub
+   username and repo name, e.g. `divyam123/bombay-earthing-website`.
+4. Replace the `base_url` with your actual Worker URL from Step 1 (no
+   trailing slash, no `/callback` here — just the base URL).
+5. Save, commit, and push this change to GitHub.
+
+### Step 5 — Log in and start editing
+
+1. Visit `https://your-website.com/admin/` (or `/admin/index.html`)
+2. Click **Login with GitHub**, authorize the app.
+3. You're in. You'll see three sections: **Products**, **Blog Posts**,
+   and **Site Settings**.
+
+That's the entire one-time setup. From here on, editing is just:
+open `/admin`, click, change, save — it publishes automatically.
+
+---
+
+## Part 3 — How to use the admin panel day-to-day
+
+### Changing a product photo
+1. Go to `/admin` → **Products** → click the product.
+2. Under **Product Photos**, click any photo thumbnail → upload a
+   replacement. Add/remove photos with the **+ Add** / trash icons.
+3. Click **Publish** (top right). Live in 1–2 minutes.
+
+### Editing product text, specs, or adding a new product
+1. **Products** → click an existing one to edit, or **+ New Product**
+   to add one.
+2. Fill in the Category label, description, and either:
+   - **Product Photos** (most products — shows as a photo carousel), or
+   - **Product Items Grid** (only for "Aviation Warning Lights" and
+     "Earthing Accessories" — each item gets its own photo)
+3. The **Specification tables / detailed content** field accepts
+   formatted text and tables for the specs section.
+4. Publish.
+
+### Writing a new blog post
+1. **Blog Posts** → **+ New Blog Post**.
+2. Fill in title, category, date, and write the article in the content
+   box (use `##` for section headings — it formats automatically).
+3. Publish. It appears on the blog page immediately, newest first,
+   automatically — no other file needs to be touched.
+
+### Changing contact info, phone numbers, or the logo
+**Site Settings** → **Contact Info & Logo**. Every field there — phone
+numbers, emails, addresses, social links, and the site logo — is
+editable directly. Changes apply site-wide immediately.
+
+### Changing the "Industries We Serve" photos on the homepage
+**Site Settings** → **Homepage — Industries We Serve**. Swap any photo
+or rename any industry.
+
+---
+
+## What each folder is (for reference — you shouldn't need to touch these)
+
+```
+_products/     One file per product category — the CMS edits these
+_posts/        One file per blog post — the CMS edits these
+_data/         Settings, nav menu, industries — the CMS edits these
+_layouts/      Page templates (shared design — controls how content looks)
+_includes/     Shared header/footer (site-wide, don't need to touch)
+assets/        CSS, JS, and every image on the site
+admin/         The CMS admin panel itself and its configuration
+```
+
+If you ever want to change the design (colors, fonts, spacing) rather
+than content, that lives in `assets/css/style.css` — that's a code
+change, not something the CMS handles, so come back and ask for that
+kind of change directly.
+
+---
+
+## A note on cost
+
+Every piece of this is free:
+- GitHub + GitHub Pages hosting — free
+- Jekyll build — free, runs automatically inside GitHub Pages
+- Cloudflare Workers (the login helper) — free tier, way more capacity
+  than a site like this will ever use
+- Sveltia CMS itself — free, open source, no subscription
+
+Nothing here requires a credit card or has a paid tier you could
+accidentally hit.

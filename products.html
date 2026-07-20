@@ -1,0 +1,38 @@
+---
+title: Products
+nav: products
+seo_title: "Earthing Products | Copper Bonded Rods, Pipe Electrodes, Lightning Arresters & More | Bombay Earthing"
+seo_description: "Full product range from Bombay Earthing House - copper bonded earth rods, pipe electrodes, conductor strips, earth plates, lightning arresters, earth pit chambers, cable trays, GEM and aviation lights."
+permalink: /products.html
+---
+<div class="container breadcrumb"><a href="{{ '/' | relative_url }}">Home</a><span> / </span><span>Products</span></div>
+<section class="section" style="padding-top:10px;">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Full Product Range</div>
+      <h1 style="font-size:34px;">Complete Earthing &amp; Lightning Protection Products</h1>
+      <p>Every product is manufactured in-house at our Mumbai facility, tested to IS, IEC and BS standards, and supplied with complete documentation. Browse all categories below.</p>
+    </div>
+    <div class="grid cols-4" style="gap:24px;">
+      {% for product in site.products %}
+      <div class="product-card">
+        {% assign thumb = product.photos[0].image | default: product.items[0].image %}
+        <img src="{{ thumb | relative_url }}" alt="{{ product.title }}" style="width:100%;height:160px;object-fit:contain;background:#f0f5fb;padding:10px;">
+        <div class="body">
+          <h3>{{ product.eyebrow }}</h3>
+          <p>{{ product.intro | truncatewords: 16 }}</p>
+          <a href="{{ product.url | relative_url }}" class="btn btn-ghost" style="margin-top:auto;">View Details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<section class="section bg-pale">
+  <div class="container">
+    <div class="cta-banner">
+      <div><h2>Can't find what you need?</h2><p>We manufacture custom earthing products to unique project requirements.</p></div>
+      <a href="{{ '/contact.html' | relative_url }}" class="btn btn-outline">Request a Custom Quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>

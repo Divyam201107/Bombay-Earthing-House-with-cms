@@ -1,0 +1,24 @@
+{% include head.html %}{% include header.html %}
+<div class="container breadcrumb"><a href="{{ '/' | relative_url }}">Home</a><span> / </span><a href="{{ '/blog-index.html' | relative_url }}">Blog</a><span> / </span><span>{{ page.title }}</span></div>
+<section class="section" style="padding-top:10px;padding-bottom:50px;">
+  <div class="container" style="max-width:760px;">
+    <div class="eyebrow">{{ page.category }}</div>
+    <h1 style="font-size:30px;">{{ page.title }}</h1>
+    <p style="font-size:12.5px;color:#8a93a0;margin-bottom:28px;">Published {{ page.date | date: "%B %-d, %Y" }} · Bombay Earthing House</p>
+    <article class="post-body">
+      {{ content }}
+    </article>
+    <div class="card" style="margin-top:36px;background:var(--blue-pale);border:none;">
+      <h3 style="font-size:16px;">Need help specifying your earthing system?</h3>
+      <p style="font-size:13.5px;">Share your soil conditions — our team will recommend the right electrode and conductor.</p>
+      <a href="{{ '/contact.html' | relative_url }}" class="btn btn-primary">Request a Quote</a>
+    </div>
+    {% if page.related_url %}
+    <div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--blue-line);">
+      <span class="eyebrow">Related Reading</span><br>
+      <a href="{{ page.related_url | relative_url }}" style="color:var(--blue-deep);font-weight:600;font-size:15px;">{{ page.related_title }} →</a>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% include footer.html %}

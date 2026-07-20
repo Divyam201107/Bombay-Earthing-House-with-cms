@@ -1,0 +1,86 @@
+{% include head.html %}{% include header.html %}
+<div class="container breadcrumb"><a href="{{ '/' | relative_url }}">Home</a><span> / </span><a href="{{ '/products.html' | relative_url }}">Products</a><span> / </span><span>{{ page.title }}</span></div>
+{% if page.photos %}
+<section class="section" style="padding-top:10px;">
+  <div class="container">
+    <div class="grid cols-2" style="align-items:start;gap:44px;">
+      <div>
+        <div class="carousel">
+          <div class="carousel-track">
+            {% for photo in page.photos %}<div class="carousel-slide"><!-- 📷 PHOTO: "{{ photo.alt }}" — to change this photo, open this page in the CMS admin and click the image to upload a new one --><img src="{{ photo.image | relative_url }}" alt="{{ photo.alt }}" style="width:100%;height:300px;object-fit:contain;background:#f5f8fb;padding:12px;"></div>{% endfor %}
+          </div>
+          <button class="carousel-btn prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button class="carousel-btn next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18l6-6-6-6"/></svg></button>
+          <div class="carousel-dots">
+            {% for photo in page.photos %}<button class="carousel-dot{% if forloop.first %}  active{% endif %}" aria-label="Slide {{ forloop.index }}"></button>{% endfor %}
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow">{{ page.eyebrow }}</div>
+        <h1 style="font-size:30px;">{{ page.title }}</h1>
+        <p>{{ page.intro }}</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;">
+          <a href="{{ '/contact.html' | relative_url }}" class="btn btn-primary">Request Quotation</a>
+          <a href="#specs" class="btn btn-ghost">View Specifications</a>
+        </div>
+        {% if page.key_features %}
+        <div style="margin-top:22px;padding:16px;background:var(--blue-pale);border-radius:var(--radius);">
+          <p style="font-size:12.5px;color:var(--blue-deep);font-weight:600;margin-bottom:6px;">✦ KEY FEATURES</p>
+          <ul style="font-size:13px;color:var(--ink-soft);list-style:none;">
+            {% for f in page.key_features %}<li>• {{ f }}</li>{% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% else %}
+<section class="section" style="padding-top:10px;">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">{{ page.eyebrow }}</div>
+      <h1 style="font-size:34px;">{{ page.title }}</h1>
+      <p style="max-width:680px;">{{ page.intro }}</p>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="section bg-pale" id="specs">
+  <div class="container">
+    <div class="section-head center"><div class="eyebrow">Specifications</div><h2>{{ page.specs_heading | default: "Technical specifications" }}</h2></div>
+    {% if page.items %}
+    <div class="grid cols-3" style="gap:24px;">
+      {% for item in page.items %}
+      <div class="product-card">
+        <!-- 📷 PHOTO: "{{ item.name }}" — to change this photo, open this page in the CMS admin and click the image to upload a new one -->
+        <img src="{{ item.image | relative_url }}" alt="{{ item.name }}" style="width:100%;height:180px;object-fit:contain;background:#f5f8fb;padding:10px;border-radius:4px 4px 0 0;">
+        <div class="body">
+          <h3 style="font-size:15px;">{{ item.name }}</h3>
+          {% if item.description %}<p style="font-size:13px;">{{ item.description }}</p>{% endif %}
+          {% if item.specs %}
+          <table class="specs" style="font-size:12px;"><tbody>
+            {% for row in item.specs %}<tr><td style="font-size:11.5px;font-weight:600;padding:5px 8px;border:1px solid var(--blue-line);white-space:nowrap;">{{ row.key }}</td><td style="font-size:11.5px;padding:5px 8px;border:1px solid var(--blue-line);">{{ row.value }}</td></tr>{% endfor %}
+          </tbody></table>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    {{ content }}
+    {% endif %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="cta-banner">
+      <div><h2>Need a custom specification or bulk quote?</h2><p>Our engineering team responds within 24 hours with a detailed quotation.</p></div>
+      <a href="{{ '/contact.html' | relative_url }}" class="btn btn-outline">Request a Quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+{% include footer.html %}

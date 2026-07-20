@@ -1,0 +1,31 @@
+---
+title: Blog
+nav: blog
+seo_title: "Blog | Earthing & Lightning Protection Insights – Bombay Earthing House"
+seo_description: "Practical articles on earthing electrode selection, lightning protection and electrical safety from Bombay Earthing House."
+permalink: /blog-index.html
+---
+<div class="container breadcrumb"><a href="{{ '/' | relative_url }}">Home</a><span> / </span><span>Blog</span></div>
+<section class="section" style="padding-top:10px;">
+  <div class="container">
+    <div class="section-head center"><div class="eyebrow">Knowledge Base</div><h1 style="font-size:34px;">Earthing &amp; Lightning Protection Insights</h1></div>
+    <div class="grid cols-3">
+      {% for post in site.posts %}
+      <div class="post-card">
+        <div class="ph"><svg viewBox="0 0 24 24" fill="currentColor" style="width:32px;height:32px;color:#fff;opacity:.85;"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></div>
+        <div class="pad">
+          <div class="meta">{{ post.category }}</div>
+          <h3>{{ post.title }}</h3>
+          <p style="font-size:13px;">{{ post.content | strip_html | truncatewords: 24 }}</p>
+          <a href="{{ post.url | relative_url }}" class="btn btn-ghost" style="margin-top:10px;">Read Article</a>
+        </div>
+      </div>
+      {% endfor %}
+      <div class="post-card" style="border:2px dashed var(--blue-line);background:var(--blue-pale);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:30px;">
+        <div style="width:40px;height:40px;color:var(--blue-mid);margin-bottom:12px;"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></div>
+        <h3 style="font-size:15px;">New posts every week</h3>
+        <p style="font-size:13px;">Use the CMS admin panel to write and publish a new post in minutes.</p>
+      </div>
+    </div>
+  </div>
+</section>
