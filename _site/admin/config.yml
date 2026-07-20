@@ -1,0 +1,138 @@
+backend:
+  name: github
+  repo: YOUR-GITHUB-USERNAME/YOUR-REPO-NAME   # ⚠️ CHANGE THIS to your actual GitHub username/repo before deploying
+  branch: main
+  base_url: https://YOUR-OAUTH-WORKER-URL.workers.dev   # ⚠️ CHANGE THIS after deploying the OAuth worker (see README)
+  auth_endpoint: auth
+
+publish_mode: simple
+media_folder: "assets/images/products"
+public_folder: "/assets/images/products"
+
+collections:
+  - name: "products"
+    label: "Products"
+    label_singular: "Product"
+    folder: "_products"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{eyebrow}}"
+    fields:
+      - { label: "Product Name (shown as page title)", name: "title", widget: "string" }
+      - { label: "Category label (shown above the title, and used in menus/cards)", name: "eyebrow", widget: "string" }
+      - { label: "Google search result title", name: "seo_title", widget: "string" }
+      - { label: "Google search result description (150-160 characters)", name: "seo_description", widget: "text" }
+      - { label: "Intro paragraph (shown next to the main photo)", name: "intro", widget: "text" }
+      - label: "Product Photos (for the photo carousel — most products use this)"
+        name: "photos"
+        widget: "list"
+        required: false
+        summary: "{{fields.alt}}"
+        fields:
+          - { label: "Photo", name: "image", widget: "image" }
+          - { label: "Description of this photo", name: "alt", widget: "string" }
+      - label: "Product Items Grid (only used by 'Aviation Warning Lights' and 'Earthing Accessories' — leave empty for all other products)"
+        name: "items"
+        widget: "list"
+        required: false
+        summary: "{{fields.name}}"
+        fields:
+          - { label: "Item Name", name: "name", widget: "string" }
+          - { label: "Photo", name: "image", widget: "image" }
+          - { label: "Description", name: "description", widget: "text", required: false }
+          - label: "Specification rows (optional table)"
+            name: "specs"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Label", name: "key", widget: "string" }
+              - { label: "Value", name: "value", widget: "string" }
+      - label: "Specification tables / detailed content (shown below the photos — used by most products, not the grid-style ones)"
+        name: "body"
+        widget: "markdown"
+        required: false
+
+  - name: "blog"
+    label: "Blog Posts"
+    label_singular: "Blog Post"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    identifier_field: title
+    summary: "{{title}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Category (shown as a small tag above the title)", name: "category", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Google search result title", name: "seo_title", widget: "string" }
+      - { label: "Google search result description (150-160 characters)", name: "seo_description", widget: "text" }
+      - label: "Related Post — pick which existing post to link to at the bottom of this one"
+        name: "related_url"
+        widget: "select"
+        options:
+          - { label: "Why Earthing Is Critical for Electrical Safety", value: "/blog-importance-of-earthing-electrical-safety.html" }
+          - { label: "Copper vs GI Earthing Electrode", value: "/blog-copper-vs-gi-earthing-electrode.html" }
+        required: false
+      - { label: "Related Post Title (must match the post you picked above)", name: "related_title", widget: "string", required: false }
+      - label: "URL slug for this post (only needed if you want a specific web address — otherwise leave blank)"
+        name: "permalink"
+        widget: "string"
+        required: false
+      - { label: "Article Content", name: "body", widget: "markdown" }
+
+  - name: "settings"
+    label: "Site Settings"
+    label_singular: "Setting"
+    files:
+      - name: "contact_info"
+        label: "Contact Info & Logo"
+        file: "_data/settings.yml"
+        fields:
+          - { label: "Logo", name: "logo_image", widget: "image" }
+          - { label: "Mumbai Phone", name: "phone_mumbai", widget: "string" }
+          - { label: "Mumbai Phone (tel: link format, e.g. +919821822522)", name: "phone_mumbai_tel", widget: "string" }
+          - { label: "Landline", name: "phone_landline", widget: "string" }
+          - { label: "Landline (tel: link format)", name: "phone_landline_tel", widget: "string" }
+          - { label: "Navi Mumbai Phone", name: "phone_navi", widget: "string" }
+          - { label: "Navi Mumbai Phone (tel: link format)", name: "phone_navi_tel", widget: "string" }
+          - { label: "Sales Email", name: "email_sales", widget: "string" }
+          - { label: "Navi Mumbai Email", name: "email_navi", widget: "string" }
+          - { label: "Mumbai Address", name: "address_mumbai", widget: "text" }
+          - { label: "Navi Mumbai Address", name: "address_navi", widget: "text" }
+          - { label: "Facebook URL", name: "facebook_url", widget: "string" }
+          - { label: "LinkedIn URL", name: "linkedin_url", widget: "string" }
+          - { label: "WhatsApp Link", name: "whatsapp_url", widget: "string" }
+          - { label: "Business Hours", name: "business_hours", widget: "string" }
+
+  - name: "industries"
+    label: "Homepage — Industries We Serve"
+    label_singular: "Industry"
+    files:
+      - name: "industries_list"
+        label: "Industries List"
+        file: "_data/industries.yml"
+        fields:
+          - label: "Industries"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Industry Name", name: "name", widget: "string" }
+              - { label: "Photo", name: "image", widget: "image" }
+
+  - name: "nav"
+    label: "Products Menu Order"
+    label_singular: "Menu Item"
+    files:
+      - name: "nav_products"
+        label: "Products Navigation Menu"
+        file: "_data/nav_products.yml"
+        fields:
+          - label: "Menu Items (controls order in the Products dropdown, footer, and mobile menu)"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Name (must match a product's Category label exactly)", name: "name", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
