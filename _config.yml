@@ -3,7 +3,7 @@ description: >-
   ISO 9001 certified manufacturer of Copper Bonded Earth Rods, Pipe Electrodes,
   Lightning Arresters, Earth Plates, Cable Trays and earthing accessories. Mumbai, India.
 url: "https://bombayearthing.com"
-baseurl: ""
+baseurl: "/Bombay-Earthing-House-with-cms"
 
 markdown: kramdown
 permalink: /:title.html
