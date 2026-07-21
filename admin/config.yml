@@ -1,8 +1,8 @@
 backend:
   name: github
-  repo: YOUR-GITHUB-USERNAME/YOUR-REPO-NAME   # ⚠️ CHANGE THIS to your actual GitHub username/repo before deploying
+  repo: Divyam201107/Bombay-Earthing-House-with-cms
   branch: main
-  base_url: https://YOUR-OAUTH-WORKER-URL.workers.dev   # ⚠️ CHANGE THIS after deploying the OAuth worker (see README)
+  base_url: https://sveltia-cms-auth.divyamjain5312.workers.dev
   auth_endpoint: auth
 
 publish_mode: simple
